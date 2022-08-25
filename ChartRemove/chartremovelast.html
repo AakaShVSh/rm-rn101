@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <input type="text" placeholder="month" id="month" /><input
+      type="number"
+      placeholder="attendance detail"
+      id="attendance"
+    /><input type="text" placeholder="performance detail" id="perfor" /> -->
+    <button id="add">Remove</button>
+    <canvas id="chart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+      var ctx, chart;
+      var attendancedata = [90, 100, 95, 80, 85, 70, 90];
+      var performancedata = [80, 90, 75, 40, 85, 80, 69];
+      var monthdetail = ["Jan", "Feb", "Mar", "Apl", "May", "Jun", "Jul"];
+      document.getElementById("add").addEventListener("click", function () {
+        // var attendance = document.getElementById("attendance").value;
+        // var performance = document.getElementById("perfor").value;
+        // var month = document.getElementById("month").value;
+        attendancedata.pop();
+        performancedata.pop()
+        monthdetail.pop();
+        showchart();
+      });
+
+      window.addEventListener("load", showchart);
+      function showchart(){
+        ctx = document.getElementById("chart");
+        chart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: monthdetail,
+            datasets: [
+              {
+                label: "attendance",
+                data: attendancedata,
+                backgroundColor: ["#f8c596"],
+              },
+              {
+                label: "perfomance",
+                data: performancedata,
+                backgroundColor: ["#ff331e"],
+              },
+            ],
+            borderWidth: 1,
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
